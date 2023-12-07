@@ -34,4 +34,6 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	SessionStore.Options.HttpOnly = true
+	SessionStore.Options.Secure = true
 }

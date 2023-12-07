@@ -18,7 +18,7 @@ func setRoutes(e *echo.Echo) *echo.Echo {
 
 	e.GET("/login", views.LoginPage)
 	e.POST("/login", views.Login)
-	e.POST("/logout", views.Logout)
+	e.GET("/logout", views.Logout)
 	e.GET("/signup", views.SignupPage)
 	e.POST("/signup", views.Signup)
 	e.GET("/", views.HomePage)
@@ -31,8 +31,10 @@ func setMiddlewares(e *echo.Echo) *echo.Echo {
 		Store: db.SessionStore,
 	}), middlewares.SetCurrentUser)
 	e.Use(middleware.CSRFWithConfig(middleware.CSRFConfig{
-		TokenLookup:  "form:_csrf,header:X-CSRF-Token",
-		CookieMaxAge: 3600,
+		TokenLookup:    "form:_csrf,header:X-CSRF-Token",
+		CookieMaxAge:   3600,
+		CookieSecure:   true,
+		CookieHTTPOnly: true,
 	}))
 	return e
 }
