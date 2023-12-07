@@ -5,6 +5,7 @@ import (
 
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"github.com/tjgurwara99/echo-boilerplates/db"
 	"github.com/tjgurwara99/echo-boilerplates/models"
 	"github.com/tjgurwara99/echo-boilerplates/templates"
@@ -13,7 +14,11 @@ import (
 )
 
 func LoginPage(c echo.Context) error {
-	t := auth.LoginView()
+	csrf, ok := c.Get(middleware.DefaultCSRFConfig.ContextKey).(string)
+	if !ok {
+		return echo.NewHTTPError(http.StatusInternalServerError, "csrf error")
+	}
+	t := auth.LoginView(csrf)
 	base := templates.Base(t)
 	return base.Render(c.Request().Context(), c.Response())
 }
@@ -67,7 +72,11 @@ func Logout(c echo.Context) error {
 }
 
 func SignupPage(c echo.Context) error {
-	t := auth.SignUpView()
+	csrf, ok := c.Get(middleware.DefaultCSRFConfig.ContextKey).(string)
+	if !ok {
+		return echo.NewHTTPError(http.StatusInternalServerError, "csrf error")
+	}
+	t := auth.SignUpView(csrf)
 	base := templates.Base(t)
 	return base.Render(c.Request().Context(), c.Response())
 }

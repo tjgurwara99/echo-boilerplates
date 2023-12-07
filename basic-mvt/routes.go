@@ -26,9 +26,13 @@ func setRoutes(e *echo.Echo) *echo.Echo {
 }
 
 func setMiddlewares(e *echo.Echo) *echo.Echo {
+	e.Use(middleware.Logger())
 	e.Use(session.MiddlewareWithConfig(session.Config{
 		Store: db.SessionStore,
 	}), middlewares.SetCurrentUser)
-	e.Use(middleware.Logger())
+	e.Use(middleware.CSRFWithConfig(middleware.CSRFConfig{
+		TokenLookup:  "form:_csrf,header:X-CSRF-Token",
+		CookieMaxAge: 3600,
+	}))
 	return e
 }
