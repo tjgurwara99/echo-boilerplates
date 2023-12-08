@@ -6,8 +6,8 @@ import (
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
-	"github.com/tjgurwara99/echo-boilerplates/db"
-	"github.com/tjgurwara99/echo-boilerplates/models"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/db"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/models"
 )
 
 // SetCurrentUser sets the current user in the context if

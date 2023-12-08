@@ -5,8 +5,8 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/require"
-	"github.com/tjgurwara99/echo-boilerplates/db"
-	"github.com/tjgurwara99/echo-boilerplates/models"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/db"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/models"
 )
 
 func TestPermissionFlatten(t *testing.T) {

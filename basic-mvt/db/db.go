@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/michaeljs1990/sqlitestore"
-	"github.com/tjgurwara99/echo-boilerplates/models"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/models"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )

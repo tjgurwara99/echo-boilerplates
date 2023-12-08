@@ -2,8 +2,8 @@ package views
 
 import (
 	"github.com/labstack/echo/v4"
-	"github.com/tjgurwara99/echo-boilerplates/models"
-	"github.com/tjgurwara99/echo-boilerplates/templates"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/models"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/templates"
 )
 
 func HomePage(c echo.Context) error {

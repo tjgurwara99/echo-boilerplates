@@ -10,7 +10,7 @@ import "context"
 import "io"
 import "bytes"
 
-import "github.com/tjgurwara99/echo-boilerplates/models"
+import "github.com/tjgurwara99/echo-boilerplates/basic-mvt/models"
 
 func SimplePage(user *models.User) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {

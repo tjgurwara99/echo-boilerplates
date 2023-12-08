@@ -6,10 +6,10 @@ import (
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"github.com/tjgurwara99/echo-boilerplates/db"
-	"github.com/tjgurwara99/echo-boilerplates/models"
-	"github.com/tjgurwara99/echo-boilerplates/templates"
-	"github.com/tjgurwara99/echo-boilerplates/templates/auth"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/db"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/models"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/templates"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/templates/auth"
 	"golang.org/x/crypto/bcrypt"
 )
 

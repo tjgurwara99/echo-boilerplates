@@ -1,4 +1,4 @@
-module github.com/tjgurwara99/echo-boilerplates
+module github.com/tjgurwara99/echo-boilerplates/basic-mvt
 
 go 1.20
 

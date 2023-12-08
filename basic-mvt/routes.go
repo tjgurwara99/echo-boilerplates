@@ -4,9 +4,9 @@ import (
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"github.com/tjgurwara99/echo-boilerplates/db"
-	"github.com/tjgurwara99/echo-boilerplates/middlewares"
-	"github.com/tjgurwara99/echo-boilerplates/views"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/db"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/middlewares"
+	"github.com/tjgurwara99/echo-boilerplates/basic-mvt/views"
 )
 
 func setRoutes(e *echo.Echo) *echo.Echo {
