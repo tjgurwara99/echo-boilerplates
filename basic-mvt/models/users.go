@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 type User struct {
@@ -16,6 +17,59 @@ type User struct {
 	PasswordConfirm string `json:"-" gorm:"-" query:"password_confirm" form:"password_confirm" validate:"required,min=8,max=64"`
 	CompanyID       uuid.UUID
 	Company         *Company
+	Permissions     []*Permission `json:"permissions" query:"-" form:"-" gorm:"many2many:user_languages;"`
+}
+
+func (u *User) FlatPermissions(db *gorm.DB) ([]string, error) {
+	var permissions []string
+	var allPermission []Permission
+	err := db.Find(&allPermission).Error
+	if err != nil {
+		return permissions, err
+	}
+	permissionSet := make(map[string]struct{})
+	for _, permission := range u.Permissions {
+		flatten, err := permission.Flatten(allPermission)
+		if err != nil {
+			return permissions, err
+		}
+		for _, p := range flatten {
+			permissionSet[p] = struct{}{}
+		}
+	}
+	for permission := range permissionSet {
+		permissions = append(permissions, permission)
+	}
+	return permissions, nil
+}
+
+type Permission struct {
+	Model
+	Permission        string
+	ParentPermissions []*Permission `gorm:"many2many:permission_parent_permissions;"`
+}
+
+func (p *Permission) Flatten(allPermissions []Permission) ([]string, error) {
+	var permissions []string
+	permissionsSet := make(map[string]struct{})
+	for _, permission := range allPermissions {
+		if permission.ID == p.ID {
+			for _, parentPermission := range p.ParentPermissions {
+				flatten, err := parentPermission.Flatten(allPermissions)
+				if err != nil {
+					return permissions, err
+				}
+				for _, p := range flatten {
+					permissionsSet[p] = struct{}{}
+				}
+			}
+		}
+	}
+	for permission := range permissionsSet {
+		permissions = append(permissions, permission)
+	}
+	permissions = append(permissions, p.Permission)
+	return permissions, nil
 }
 
 type Role struct {

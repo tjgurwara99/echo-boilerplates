@@ -26,7 +26,7 @@ func init() {
 		log.Fatal(err)
 	}
 	// Add models here for migrations - gorm will create tables for them
-	err = DB.AutoMigrate(&models.User{})
+	err = DB.AutoMigrate(&models.User{}, &models.Permission{}, &models.Company{}, &models.Role{})
 	if err != nil {
 		log.Fatal(err)
 	}
